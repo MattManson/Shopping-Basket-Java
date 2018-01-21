@@ -1,5 +1,6 @@
 package basket;
 
+import discount.Bogof;
 import discount.IDiscount;
 
 import java.util.ArrayList;
@@ -38,5 +39,26 @@ public class Basket {
 
     public void emptyBasket() {
         items.clear();
+    }
+
+    public boolean discountsEmpty() {
+        return this.discounts.size() == 0;
+    }
+
+    public void addDiscount(IDiscount discount) {
+        this.discounts.add(discount);
+    }
+
+    public int numDiscounts() {
+        if (discountsEmpty()) return 0;
+        return discounts.size();
+    }
+
+    public double getTotal() {
+        double total = 0;
+        for(Item item : items){
+            total += item.getPrice();
+        }
+        return total;
     }
 }
